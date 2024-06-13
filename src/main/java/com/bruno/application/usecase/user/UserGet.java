@@ -1,20 +1,21 @@
 package com.bruno.application.usecase.user;
 
-import com.bruno.domain.dto.users.UserCreateDTO;
 import com.bruno.domain.model.User;
 import com.bruno.domain.repository.UserRepository;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class UserCreate {
+public class UserGet {
+
     private final UserRepository userRepository;
 
-    public UserCreate(UserRepository userRepository) {
+    public UserGet(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public User execute(UserCreateDTO dto) {
-        return userRepository.create(dto);
+    public Iterable<User> execute() {
+        var optional = userRepository.get();
+        return optional.orElseThrow();
     }
 }
