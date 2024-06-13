@@ -1,6 +1,7 @@
 package com.bruno.util;
 
 import com.bruno.domain.dto.users.UserCreateDTO;
+import com.bruno.domain.dto.users.UserEditDTO;
 import com.bruno.domain.model.User;
 import com.bruno.infrastructure.db.entity.UserEntity;
 
@@ -25,6 +26,14 @@ public class Mapper {
     }
 
     public static UserEntity toUserEntity(UserCreateDTO user) {
+        var entity = new UserEntity();
+        entity.setName(user.name());
+        entity.setAge(user.age());
+
+        return entity;
+    }
+
+    public static UserEntity toUserEntity(UserEditDTO user) {
         var entity = new UserEntity();
         entity.setName(user.name());
         entity.setAge(user.age());
